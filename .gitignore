@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 
 .idea/
+# local config files
+config.yaml
 
 # C extensions
 *.so
