@@ -11,11 +11,12 @@ final_results = []
 # load_dataset
 print("Loading dataset...")
 ds = load_dataset(DATASET, DATASET_SUBSET)
+ds = ds["train"]
 print(ds)
 print("Dataset loaded!!!")
 
 # load model
-llm = LLM(model=MODEL, gpu_memory_utilization=0.9)
+llm = LLM(model=MODEL,max_model_len = 2048, gpu_memory_utilization=0.9)
 sampling = SamplingParams(
     temperature=0.7,
     top_p=0.9,
@@ -29,7 +30,7 @@ for i in range(1):
 
     for lang in SUPPORTED_LANGUAGES:
         try:
-            text = ds[lang]["premise"][i]
+            text = ds["premise"][i][lang]
             prompt = f"({lang}) Respond to this text:\n{text}"
             
             outputs = llm.generate([prompt], sampling)
@@ -51,5 +52,12 @@ for i in range(1):
     final_results.append(sample_group)
 
 print("\nFinal Results:")
-
+for result in final_results:
+    print(f"Sample ID: {result['id']}")
+    for sample in result['samples']:
+        print(f"  Language: {sample['lang']}")
+        print(f"  Input: {sample['input']}")
+        print(f"  Output: {sample['output']}")
+        print(f"  Toxicity: {sample['toxicity']:.4f}")
+    print("\n")
 

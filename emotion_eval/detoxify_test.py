@@ -3,7 +3,7 @@ from detoxify import Detoxify
 
 # each model takes in either a string or a list of strings
 
-results = Detoxify('original').predict('fuck you')
+results = Detoxify('original').predict('fuck you')["toxicity"]
 
 # results = Detoxify('unbiased').predict(['example text 1','example text 2'])
 
