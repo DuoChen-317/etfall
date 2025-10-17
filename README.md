@@ -36,7 +36,7 @@ It evaluates LLM outputs’ **emotional tone and toxicity** using the [Detoxify]
 | **1️⃣ Demo 1** | Environment setup and benchmark completed | ✅ Completed | `benchmark.py` |
 | **2️⃣ Demo 2** | Experiment configuration and environment replication | 🔵 Planned | `evl_[model_name].py` |
 | **3️⃣ Demo 3** | Try some possible way to mitigate the bias| 🔵 Planned | prompts etc. |
-| **4️⃣ Report** | Analysis, visualization, and report writing | 🔵 Planned | Summarize results, discuss mitigation strategies |
+| **4️⃣ Report** | Analysis, visualization, and report writing | 🔵 Planned | Summarize results, discuss and reporting |
 
 ---
 
