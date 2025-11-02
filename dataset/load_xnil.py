@@ -1,6 +1,15 @@
 from datasets import load_dataset
 
-ds = load_dataset("facebook/xnli", "all_languages")
-ds = ds["train"]
-text = ds["premise"][0]["en"]
-print(text)
+
+def load_idassigned_dataset(dataset = "facebook/xnli", subset = "all_languages"):
+    # load_dataset
+    print("Loading dataset...")
+    ds = load_dataset(dataset, subset)
+    ds = ds["train"]
+    print("Dataset loaded!!!")
+    ds = ds.add_column("id", list(range(len(ds))))
+    print(ds[0])
+    return ds
+
+
+load_idassigned_dataset()
