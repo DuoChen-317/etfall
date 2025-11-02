@@ -13,4 +13,3 @@ def load_idassigned_dataset(dataset = "facebook/xnli", subset = "all_languages")
     return ds
 
 
-load_idassigned_dataset()
