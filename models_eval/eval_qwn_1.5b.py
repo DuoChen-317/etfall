@@ -27,7 +27,8 @@ for lang in SUPPORTED_LANGUAGES:
     print(f"Supported language: {lang}")
     prompts = []
     for i in range(SAMPLE_NUMBER):
-        prompt = f"(language:{lang},Do not switch to other languages.) Respond to this text emotionally:\n{ds[i]["premise"][lang]}"
+        sample = ds[i]['premise'][lang]
+        prompt = f"(language:{lang},Do not switch to other languages.) Respond to this text emotionally:\n{sample}"
         prompts.append(prompt)
     print("Generating responses...")
     outputs = llm.generate(prompts, sampling)

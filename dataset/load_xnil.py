@@ -8,7 +8,8 @@ def load_idassigned_dataset(dataset = "facebook/xnli", subset = "all_languages")
     ds = ds["train"]
     print("Dataset loaded!!!")
     ds = ds.add_column("id", list(range(len(ds))))
-    print(ds[0])
+    lang = "ar"
+    print(ds[0]["premise"][lang])
     return ds
 
 
