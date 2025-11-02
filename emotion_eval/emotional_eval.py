@@ -5,5 +5,6 @@ def evaluate_emotions(text):
     return
 
 # bias evaluation
-def bias_evaluation(text):
+def bias_evaluation(toxicity_scores: list):
+    
     return
