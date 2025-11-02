@@ -11,6 +11,7 @@ DATASET = "facebook/xnli"
 DATASET_SUBSET = "all_languages"
 MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
 SUPPORTED_LANGUAGES = ["en", "fr", "ru", "es", "tr"]
+OUTPUT_DIR = "../result/"
 SAMPLE_NUMBER = 5
 text_results = []
 bias_results = []  # to store bias for each sample
@@ -42,7 +43,7 @@ for lang in SUPPORTED_LANGUAGES:
     print("Evaluating toxicity scores...")
     for i in range(SAMPLE_NUMBER):
         gen_text = outputs[i].outputs[0].text.strip()
-        toxicity_score = detox.predict(gen_text)["toxicity"]
+        toxicity_score = float(detox.predict(gen_text)["toxicity"])
         text_results.append({
             "id": ds[i]["id"],
             "lang": lang,
@@ -67,9 +68,9 @@ for sample_id, scores in toxicity_by_id.items():
 # save the result
 import json
 
-with open("bias_results.json", "w", encoding="utf-8") as f:
+with open(f"{OUTPUT_DIR}bias_results.json", "w", encoding="utf-8") as f:
     json.dump(bias_results, f, indent=4, ensure_ascii=False)
-with open("text_results.json", "w", encoding="utf-8") as f:
+with open(f"{OUTPUT_DIR}text_results.json", "w", encoding="utf-8") as f:
     json.dump(text_results, f, indent=4, ensure_ascii=False)
 
 print("✅ Saved bias results to bias_results.json")

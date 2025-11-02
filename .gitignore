@@ -6,6 +6,8 @@ __pycache__/
 .idea/
 # local config files
 config.yaml
+# result
+result/
 
 # C extensions
 *.so
@@ -209,3 +211,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# runing result
+
