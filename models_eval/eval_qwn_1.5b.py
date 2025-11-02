@@ -46,7 +46,7 @@ for lang in SUPPORTED_LANGUAGES:
         text_results.append({
             "id": ds[i]["id"],
             "lang": lang,
-            "input": ds[i]['premise'][[lang],
+            "input": ds[i]['premise'][lang],
             "output": gen_text,
             "toxicity": toxicity_score
         })
