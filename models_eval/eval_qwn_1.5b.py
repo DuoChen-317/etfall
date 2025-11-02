@@ -1,6 +1,6 @@
 from vllm import LLM, SamplingParams
 from detoxify import Detoxify
-from emotion_eval import emotional_eval
+from emotion_eval.emotional_eval import bias_evaluation
 from dataset.load_xnil import load_idassigned_dataset
 
 
