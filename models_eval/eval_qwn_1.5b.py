@@ -1,7 +1,10 @@
 from vllm import LLM, SamplingParams
 from detoxify import Detoxify
-from emotion_eval.emotional_eval import bias_evaluation
+
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from dataset.load_xnil import load_idassigned_dataset
+from emotion_eval.emotional_eval import bias_evaluation
 
 
 DATASET = "facebook/xnli"
