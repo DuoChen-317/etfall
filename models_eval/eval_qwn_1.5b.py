@@ -67,7 +67,7 @@ for sample_id, scores in toxicity_by_id.items():
 
 # save the result
 import json
-
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 with open(f"{OUTPUT_DIR}bias_results.json", "w", encoding="utf-8") as f:
     json.dump(bias_results, f, indent=4, ensure_ascii=False)
 with open(f"{OUTPUT_DIR}text_results.json", "w", encoding="utf-8") as f:
