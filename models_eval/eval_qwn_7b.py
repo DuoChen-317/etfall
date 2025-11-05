@@ -14,7 +14,7 @@ def main(output_dir: str, sample_number: int):
     # ==== CONFIG ====
     DATASET = "facebook/xnli"
     DATASET_SUBSET = "all_languages"
-    MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
+    MODEL = "Qwen/Qwen2.5-7B-Instruct"
     SUPPORTED_LANGUAGES = ["en", "fr", "ru", "es", "tr"]
 
     text_results = []

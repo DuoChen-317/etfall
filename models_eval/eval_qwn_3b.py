@@ -76,7 +76,7 @@ def main(output_dir: str, sample_number: int):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate emotional bias of multilingual LLM.")
     parser.add_argument("--output_dir", type=str, default="../result/", help="Directory to save results.")
-    parser.add_argument("--sample_number", type=int, default=5, help="Number of samples per language.")
+    parser.add_argument("--sample_number", type=int, default=500, help="Number of samples per language.")
     args = parser.parse_args()
 
     main(args.output_dir, args.sample_number)
