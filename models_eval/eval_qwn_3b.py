@@ -66,11 +66,10 @@ def main(output_dir: str, sample_number: int):
     # ==== SAVE RESULTS ====
     model_savename = MODEL.replace('/','_')
     os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, f"text_results_{model_savename}.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(output_dir, f"text_results_{model_savename}__{sample_number}_base.json"), "w", encoding="utf-8") as f:
         json.dump(text_results, f, indent=4, ensure_ascii=False)
-    with open(os.path.join(output_dir, f"bias_results_{model_savename}.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(output_dir, f"bias_results_{model_savename}_{sample_number}_base.json"), "w", encoding="utf-8") as f:
         json.dump(bias_results, f, indent=4, ensure_ascii=False)
-
 
     print(f"\n✅ Saved results in: {output_dir}")
 
