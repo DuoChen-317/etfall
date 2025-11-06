@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:1                 # 1 GPU
 #SBATCH --cpus-per-task=2            # 2 CPU cores
 #SBATCH --mem=32G                    # 16 GB total memory
-#SBATCH --time=4:00:00
+#SBATCH --time=8:00:00
 #SBATCH --output=/mnt/vstor/courses/csds447/dxc830/log/qwen_%j.out
 #SBATCH --error=/mnt/vstor/courses/csds447/dxc830/log/qwen_%j.err
 #SBATCH --mail-user=dxc830@case.edu
@@ -20,6 +20,9 @@ module load singularity
 SIF_IMAGE=/mnt/vstor/courses/csds447/dxc830/vllm_base.sif
 WORKDIR=/mnt/vstor/courses/csds447/dxc830/etfall
 
+# ---- param ----
+SAMPLE_NUM = 3000
+
 # ---- Ensure log directory exists ----
 mkdir -p /mnt/vstor/courses/csds447/dxc830/log
 
@@ -27,12 +30,12 @@ mkdir -p /mnt/vstor/courses/csds447/dxc830/log
 cd $WORKDIR
 
 echo "[$(date)] Starting Qwen 1.5B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number 5000
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number $SAMPLE_NUM
 
 echo "[$(date)] Starting Qwen 3B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_3b.py --sample_number 5000
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_3b.py --sample_number  $SAMPLE_NUM
 
 echo "[$(date)] Starting Qwen 7B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_7b.py --sample_number 5000
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_7b.py --sample_number  $SAMPLE_NUM
 
 echo "[$(date)] All jobs completed successfully."
