@@ -9,6 +9,8 @@ config.yaml
 # result
 result/
 
+.DS_store
+
 # C extensions
 *.so
 
