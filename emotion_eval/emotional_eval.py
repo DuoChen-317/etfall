@@ -23,10 +23,11 @@ def bias_evaluation(toxicity_scores: list):
     std_dev = float(np.std(scores, ddof=0))
     score_range = float(np.max(scores) - np.min(scores))
     normalized_std = float(std_dev / mean_score) if mean_score != 0 else np.nan
-
+    log_std = np.std(np.log10(scores))
     return {
         "std_dev": std_dev,
         "range": score_range,
         "mean": mean_score,
-        "normalized_std": normalized_std
+        "normalized_std": normalized_std,
+        "log_std": log_std
     }
