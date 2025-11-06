@@ -21,7 +21,7 @@ SIF_IMAGE=/mnt/vstor/courses/csds447/dxc830/vllm_base.sif
 WORKDIR=/mnt/vstor/courses/csds447/dxc830/etfall
 
 # ---- param ----
-SAMPLE_NUM = 3000
+SAMPLE_NUM=3000
 
 # ---- Ensure log directory exists ----
 mkdir -p /mnt/vstor/courses/csds447/dxc830/log
