@@ -30,15 +30,12 @@ mkdir -p /mnt/vstor/courses/csds447/dxc830/log
 cd $WORKDIR
 
 echo "[$(date)] Starting Qwen 1.5B evaluation..."
-singularity shell --nv $SIF_IMAGE
-python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number $SAMPLE_NUM
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number $SAMPLE_NUM
 
-#singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number $SAMPLE_NUM
-#
-#echo "[$(date)] Starting Qwen 3B evaluation..."
-#singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_3b.py --sample_number $SAMPLE_NUM
-#
-#echo "[$(date)] Starting Qwen 7B evaluation..."
-#singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_7b.py --sample_number $SAMPLE_NUM
+echo "[$(date)] Starting Qwen 3B evaluation..."
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_3b.py --sample_number $SAMPLE_NUM
+
+echo "[$(date)] Starting Qwen 7B evaluation..."
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_7b.py --sample_number $SAMPLE_NUM
 
 echo "[$(date)] All jobs completed successfully."
