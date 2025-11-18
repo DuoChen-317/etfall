@@ -1,14 +1,19 @@
 #!/bin/bash
-#SBATCH --job-name=nettest
+#SBATCH --job-name=singnet
 #SBATCH -A csds438
 #SBATCH -p markov_gpu
-#SBATCH -n 1
-#SBATCH -N 1
-#SBATCH --time=3:00
-#SBATCH --output=net_%j.out
+#SBATCH --gres=gpu:1
+#SBATCH --output=singnet_%j.out
 
-echo "Testing Curl"
-curl -I https://google.com
+echo "Testing internet inside Singularity"
 
-echo "Testing Ping"
-ping -c 3 google.com
+module load singularity
+
+
+# ---- Paths ----
+SIF_IMAGE=/mnt/vstor/courses/csds447/dxc830/vllm_base.sif
+
+
+singularity exec --nv $SIF_IMAGE curl -I https://google.com
+
+singularity exec --nv $SIF_IMAGE ping -c 2 google.com
