@@ -2,8 +2,6 @@ import json
 
 # read the bias result from json
 
-import json
-
 FILE_PATHs = ["../result/bias_results_Qwen_Qwen2.5-1.5B-Instruct_3000_base.json",
                "../result/bias_results_Qwen_Qwen2.5-3B-Instruct_3000_base.json",
                "../result/bias_results_Qwen_Qwen2.5-7B-Instruct_3000_base.json"]
