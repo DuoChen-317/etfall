@@ -29,13 +29,13 @@ mkdir -p /mnt/vstor/courses/csds447/dxc830/log
 # ---- Run job ----
 cd $WORKDIR
 
-echo "[$(date)] Starting Qwen 1.5B evaluation..."
+echo "[$(date)] Starting llama 1.5B evaluation..."
 singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_1b.py --sample_number $SAMPLE_NUM
 
-echo "[$(date)] Starting Qwen 3B evaluation..."
+echo "[$(date)] Starting llama 3B evaluation..."
 singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_3b.py --sample_number $SAMPLE_NUM
 
-echo "[$(date)] Starting Qwen 7B evaluation..."
+echo "[$(date)] Starting llama 7B evaluation..."
 singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_8b.py --sample_number $SAMPLE_NUM
 
 echo "[$(date)] All jobs completed successfully."

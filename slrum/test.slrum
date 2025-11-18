@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --job-name=nettest
+#SBATCH -A csds438
+#SBATCH -p markov_gpu
+#SBATCH -n 1
+#SBATCH -N 1
+#SBATCH --time=3:00
+#SBATCH --output=net_%j.out
+
+echo "Testing Curl"
+curl -I https://google.com
+
+echo "Testing Ping"
+ping -c 3 google.com
