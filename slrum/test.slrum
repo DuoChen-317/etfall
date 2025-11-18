@@ -13,6 +13,9 @@ module load singularity
 # ---- Paths ----
 SIF_IMAGE=/mnt/vstor/courses/csds447/dxc830/vllm_base.sif
 
+singularity shell --nv $SIF_IMAGE
+echo $HF_HOME
+
 
 singularity exec --nv $SIF_IMAGE curl -I https://google.com
 
