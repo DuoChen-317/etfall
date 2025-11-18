@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=Qwen_5000_base
+#SBATCH --job-name=llama_3000_base
 #SBATCH -A csds438                   # your account
 #SBATCH -p markov_gpu                # GPU partition
 #SBATCH -C gpu4090                   # RTX 4090 node
