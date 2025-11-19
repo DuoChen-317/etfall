@@ -10,7 +10,7 @@ from dataset.load_xnli import load_idassigned_dataset
 from emotion_eval.emotional_eval import bias_evaluation
 
 
-def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to this text emotionally:"):
+def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to this text emotionally:",MODE: str = "base"):
     # ==== CONFIG ====
     DATASET = "facebook/xnli"
     DATASET_SUBSET = "all_languages"
@@ -66,9 +66,9 @@ def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to
     # ==== SAVE RESULTS ====
     model_savename = MODEL.replace('/','_')
     os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, f"text_results_{model_savename}__{sample_number}_base.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(output_dir, f"text_results_{model_savename}__{sample_number}_{MODE}.json"), "w", encoding="utf-8") as f:
         json.dump(text_results, f, indent=4, ensure_ascii=False)
-    with open(os.path.join(output_dir, f"bias_results_{model_savename}_{sample_number}_base.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(output_dir, f"bias_results_{model_savename}_{sample_number}_{MODE}.json"), "w", encoding="utf-8") as f:
         json.dump(bias_results, f, indent=4, ensure_ascii=False)
 
     print(f"\n✅ Saved results in: {output_dir}")
@@ -79,6 +79,7 @@ if __name__ == "__main__":
     parser.add_argument("--output_dir", type=str, default="../result/", help="Directory to save results.")
     parser.add_argument("--sample_number", type=int, default=500, help="Number of samples per language.")
     parser.add_argument("--prompt_template", type=str, default="Respond to this text emotionally:", help="Prompt template for text generation.")
+    parser.add_argument("--mode", type=str, default="base")
     args = parser.parse_args()
 
-    main(args.output_dir, args.sample_number, args.prompt_template)
+    main(args.output_dir, args.sample_number, args.prompt_template, args.mode)
