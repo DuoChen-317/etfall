@@ -10,7 +10,7 @@ from dataset.load_xnli import load_idassigned_dataset
 from emotion_eval.emotional_eval import bias_evaluation
 
 
-def main(output_dir: str, sample_number: int):
+def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to this text emotionally:"):
     # ==== CONFIG ====
     DATASET = "facebook/xnli"
     DATASET_SUBSET = "all_languages"
@@ -33,7 +33,7 @@ def main(output_dir: str, sample_number: int):
         prompts = []
         for i in range(sample_number):
             sample = ds[i]['premise'][lang]
-            prompt = f"(language:{lang}, Do not switch to other languages.) Respond to this text emotionally:\n{sample}"
+            prompt = f"(language:{lang}, Do not switch to other languages.) {prompt_template}\n{sample}"
             prompts.append(prompt)
 
         print("Generating responses...")
@@ -78,6 +78,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate emotional bias of multilingual LLM.")
     parser.add_argument("--output_dir", type=str, default="../result/", help="Directory to save results.")
     parser.add_argument("--sample_number", type=int, default=500, help="Number of samples per language.")
+    parser.add_argument("--prompt_template", type=str, default="Respond to this text emotionally:", help="Prompt template for text generation.")
     args = parser.parse_args()
 
-    main(args.output_dir, args.sample_number)
+    main(args.output_dir, args.sample_number, args.prompt_template)
