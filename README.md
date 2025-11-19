@@ -37,7 +37,7 @@ It evaluates LLM outputs’ **emotional tone and toxicity** using the [Detoxify]
 | Qwen-2.5-7B-Instruct | http://huggingface.co/Qwen/Qwen2.5-7B-Instruct |
 | LLama-3.2-1B-Instruct| https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct |
 | LLama-3.2-3B-Instruct| https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct |
-| LLama-3.2-8B-Instruct| https://huggingface.co/meta-llama/Llama-3.2-8B-Instruct |
+| LLama-3.1-8B-Instruct| https://huggingface.co/meta-llama/Llama-3.2-8B-Instruct |
 
 
 
