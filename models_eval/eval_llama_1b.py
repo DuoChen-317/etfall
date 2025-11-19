@@ -66,7 +66,7 @@ def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to
     # ==== SAVE RESULTS ====
     model_savename = MODEL.replace('/','_')
     os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, f"text_results_{model_savename}__{sample_number}_{MODE}.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(output_dir, f"text_results_{model_savename}_{sample_number}_{MODE}.json"), "w", encoding="utf-8") as f:
         json.dump(text_results, f, indent=4, ensure_ascii=False)
     with open(os.path.join(output_dir, f"bias_results_{model_savename}_{sample_number}_{MODE}.json"), "w", encoding="utf-8") as f:
         json.dump(bias_results, f, indent=4, ensure_ascii=False)

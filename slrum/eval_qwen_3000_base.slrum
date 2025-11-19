@@ -19,6 +19,7 @@ module load singularity
 # ---- Paths ----
 SIF_IMAGE=/mnt/vstor/courses/csds447/dxc830/vllm_base.sif
 WORKDIR=/mnt/vstor/courses/csds447/dxc830/etfall
+OUTPUT_DIR=/mnt/vstor/courses/csds447/dxc830/etfall/results/qwen_eval/base/
 
 # ---- param ----
 SAMPLE_NUM=3000
@@ -30,12 +31,12 @@ mkdir -p /mnt/vstor/courses/csds447/dxc830/log
 cd $WORKDIR
 
 echo "[$(date)] Starting Qwen 1.5B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number $SAMPLE_NUM --mode "adversarial"
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_1.5b.py --sample_number $SAMPLE_NUM --mode "base" --output_dir $OUTPUT_DIR
 
 echo "[$(date)] Starting Qwen 3B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_3b.py --sample_number $SAMPLE_NUM --mode "adversarial"
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_3b.py --sample_number $SAMPLE_NUM --mode "base" --output_dir $OUTPUT_DIR
 
 echo "[$(date)] Starting Qwen 7B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_7b.py --sample_number $SAMPLE_NUM --mode "adversarial"
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_qwn_7b.py --sample_number $SAMPLE_NUM --mode "base" --output_dir $OUTPUT_DIR
 
 echo "[$(date)] All jobs completed successfully."
