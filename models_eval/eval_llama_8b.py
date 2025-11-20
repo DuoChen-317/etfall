@@ -14,7 +14,7 @@ def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to
     # ==== CONFIG ====
     DATASET = "facebook/xnli"
     DATASET_SUBSET = "all_languages"
-    MODEL = "meta-llama/Llama-3.2-8B-Instruct"
+    MODEL = "meta-llama/Llama-3.1-8B-Instruct"
     SUPPORTED_LANGUAGES = ["en", "fr", "ru", "es", "tr"]
 
     text_results = []
