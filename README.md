@@ -10,7 +10,7 @@ It evaluates LLM outputs’ **emotional tone and toxicity** using the [Detoxify]
 
 - [🚀 Overview](#️-Overview)  
 - [📊 Project Status](#-Project-Status)  
-- [📦 Environment Setup](#-eEnvironment-Setup)  
+- [📦 Environment Setup](#-Environment-Setup)  
 - [📄 License](#-license)  
 
 ---
