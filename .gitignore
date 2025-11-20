@@ -8,6 +8,7 @@ __pycache__/
 config.yaml
 # result
 result/
+results/
 
 .DS_store
 
