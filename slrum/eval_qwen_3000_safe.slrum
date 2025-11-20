@@ -19,7 +19,7 @@ module load singularity
 # ---- Paths ----
 SIF_IMAGE=/mnt/vstor/courses/csds447/dxc830/vllm_base.sif
 WORKDIR=/mnt/vstor/courses/csds447/dxc830/etfall
-OUTPUT_DIR=/mnt/vstor/courses/csds447/dxc830/etfall/results/qwen_eval/adversarial/s
+OUTPUT_DIR=/mnt/vstor/courses/csds447/dxc830/etfall/results/qwen_eval/safe/
 PROMPT_TEMPLATE="Please generate an appropriate and respectful response to the following text:
 
 # ---- param ----

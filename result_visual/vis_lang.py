@@ -8,7 +8,17 @@ import numpy as np
 FILE_PATHs = ["../result/qwen/base/text_results_Qwen_Qwen2.5-1.5B-Instruct_3000_base.json",
                "../result/qwen/base/text_results_Qwen_Qwen2.5-3B-Instruct_3000_base.json",
                "../result/qwen/base/text_results_Qwen_Qwen2.5-7B-Instruct_3000_base.json"]
+
+SAFE_FILE_PATHs = ["../result/qwen/safe/text_results_Qwen_Qwen2.5-1.5B-Instruct_3000_safe.json",
+               "../result/qwen/safe/text_results_Qwen_Qwen2.5-3B-Instruct_3000_safe.json",
+               "../result/qwen/safe/text_results_Qwen_Qwen2.5-7B-Instruct_3000_safe.json"]
+
+LLAMA_BASE_FILE_PATHs = ["../result/llama/base/text_results_meta-llama_Llama-3.1-8B-Instruct_3000_base.json",
+               "../result/llama/base/text_results_meta-llama_Llama-3.2-3B-Instruct_3000_base.json",
+               "../result/llama/base/text_results_meta-llama_Llama-3.1-8B-Instruct_3000_base.json"]
+
 MODEL_NAMES = ["Qwen2.5-1.5B", "Qwen2.5-3B", "Qwen2.5-7B"]
+MODEL_NAMES_LLAMA = ["Llama3.2-1B", "Llama3.2-3B", "Llama3.1-8B"]
 
 def plot_mean_toxicity_by_language(model_files, model_names, output_path="model_comparison.png",threshold=0.0):
     """
@@ -133,4 +143,5 @@ def plot_number_toxicity_by_language(model_files, model_names, output_path="mode
     print(f"[Saved] {output_path}")
 
 
-plot_number_toxicity_by_language(FILE_PATHs, MODEL_NAMES, output_path="model_comparison_counts_0.1.png", threshold=0.5)
+plot_mean_toxicity_by_language(LLAMA_BASE_FILE_PATHs, MODEL_NAMES_LLAMA, output_path="llama_base_mean_toxicity_by_language.png",threshold=0.0)
+plot_number_toxicity_by_language(LLAMA_BASE_FILE_PATHs, MODEL_NAMES_LLAMA, output_path="llama_base_number_toxicity_by_language.png",threshold=0.1)
