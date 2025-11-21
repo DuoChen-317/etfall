@@ -33,12 +33,12 @@ mkdir -p /mnt/vstor/courses/csds447/dxc830/log
 cd $WORKDIR
 
 echo "[$(date)] Starting llama 1.5B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_1b.py --sample_number $SAMPLE_NUM --mode "safe" --output_dir $OUTPUT_DIR --prompt_template "$PROMPT_TEMPLATE"
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_1b.py --sample_number $SAMPLE_NUM --mode "adversarial" --output_dir $OUTPUT_DIR --prompt_template "$PROMPT_TEMPLATE"
 
 echo "[$(date)] Starting llama 3B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_3b.py --sample_number $SAMPLE_NUM --mode "safe" --output_dir $OUTPUT_DIR --prompt_template "$PROMPT_TEMPLATE"  
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_3b.py --sample_number $SAMPLE_NUM --mode "adversarial" --output_dir $OUTPUT_DIR --prompt_template "$PROMPT_TEMPLATE"  
 
 echo "[$(date)] Starting llama 7B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_8b.py --sample_number $SAMPLE_NUM --mode "safe" --output_dir $OUTPUT_DIR --prompt_template "$PROMPT_TEMPLATE"
+singularity exec --nv $SIF_IMAGE python3 $WORKDIR/models_eval/eval_llama_8b.py --sample_number $SAMPLE_NUM --mode "adversarial" --output_dir $OUTPUT_DIR --prompt_template "$PROMPT_TEMPLATE"
 
 echo "[$(date)] All jobs completed successfully."
