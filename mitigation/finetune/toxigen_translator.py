@@ -34,22 +34,39 @@ def load_nllb_model():
     model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME,use_safetensors=True)
     model.to(device)
     model.eval()
-    
+
     return model, tokenizer, device
 
 
 # -----------------------------
 # Translation function
 # -----------------------------
-def translate_nllb(model, tokenizer, device, text,src_lang_code, tgt_lang_code, max_new_tokens=128):
+def translate_nllb(model, tokenizer, device, text, tgt_lang_code, max_new_tokens=128):
     # Set source language
     tokenizer.src_lang = SRC_LANG
+    # Tokenize input
+    encoded = tokenizer(
+        text,
+        return_tensors="pt",
+        truncation=True,
+        max_length=512,
+    ).to(device)
 
+    # Get BOS token for target lang
+    bos_id = tokenizer.convert_tokens_to_ids(tgt_lang_code)
+    if bos_id == tokenizer.unk_token_id:
+        raise ValueError(f"Invalid language code: {tgt_lang_code}")
 
+    # Generate translation
+    with torch.no_grad():
+        generated = model.generate(
+            **encoded,
+            forced_bos_token_id=bos_id,
+            max_new_tokens=max_new_tokens,
+            num_beams=4,
+        )
 
-
-    output = translator(text_to_translate, max_length=max_new_tokens)
-    return out.strip()
+    return tokenizer.batch_decode(generated, skip_special_tokens=True)[0].strip()
 
 
 # -----------------------------
