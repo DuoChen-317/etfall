@@ -30,7 +30,7 @@ MIN_TOXICITY = 3
 def load_nllb_model():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Loading NLLB model on {device}...")
-    tokenizer = NllbTokenizerFast.from_pretrained(MODEL_NAME)
+    tokenizer = NllbTokenizer.from_pretrained(MODEL_NAME)
     model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME,use_safetensors=True)
     model.to(device)
     model.eval()
