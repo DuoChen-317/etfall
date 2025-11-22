@@ -7,7 +7,7 @@ from detoxify import Detoxify
 
 # results = Detoxify('unbiased').predict(['siktir git'])["toxicity"]
 
-results = Detoxify('multilingual').predict(["иди на хуй"])["toxicity"]
+results = Detoxify('multilingual').predict(["asians are trying to take over the world with their karate skills"])["toxicity"]
 
 # # to specify the device the model will be allocated on (defaults to cpu), accepts any torch.device input
 
