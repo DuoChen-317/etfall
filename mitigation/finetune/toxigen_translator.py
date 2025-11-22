@@ -3,7 +3,7 @@ import time
 from datasets import load_dataset
 from tqdm import tqdm
 import torch
-from transformers import NllbTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
 # -----------------------------
 # CONFIG
@@ -30,39 +30,25 @@ MIN_TOXICITY = 3
 def load_nllb_model():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Loading NLLB model on {device}...")
-    tokenizer = NllbTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME,use_safetensors=True)
     model.to(device)
     model.eval()
+    
     return model, tokenizer, device
 
 
 # -----------------------------
 # Translation function
 # -----------------------------
-def translate_nllb(model, tokenizer, device, text, tgt_lang_code, max_new_tokens=128):
+def translate_nllb(model, tokenizer, device, text,src_lang_code, tgt_lang_code, max_new_tokens=128):
     # Set source language
     tokenizer.src_lang = SRC_LANG
 
-    encoded = tokenizer(
-        text,
-        return_tensors="pt",
-        truncation=True,
-        max_length=512,
-    ).to(device)
 
 
 
-
-    with torch.no_grad():
-        generated_tokens = model.generate(
-            **encoded,
-            forced_bos_token_id=tokenizer.lang_code_to_id[tgt_lang_code],
-            max_new_tokens=max_new_tokens,
-            num_beams=4,
-        )
-
-    out = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
+    output = translator(text_to_translate, max_length=max_new_tokens)
     return out.strip()
 
 
