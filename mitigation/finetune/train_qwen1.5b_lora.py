@@ -13,7 +13,7 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL,
     device_map="auto",
-    torch_dtype="bfloat16"
+    dtype="bfloat16"
 )
 
 # LoRA config (stronger on small models)
@@ -32,7 +32,7 @@ training_args = SFTConfig(
     per_device_train_batch_size=2,
     gradient_accumulation_steps=8,
     learning_rate=2e-4,
-    max_seq_len=512,
+    max_length=512,
     save_steps=500,
     logging_steps=50,
     warmup_ratio=0.1,
