@@ -7,7 +7,7 @@ from detoxify import Detoxify
 
 # results = Detoxify('unbiased').predict(['siktir git'])["toxicity"]
 
-
+results = Detoxify('multilingual').predict(["asians are trying to take over the world with their karate skills"])["toxicity"]
 
 # # to specify the device the model will be allocated on (defaults to cpu), accepts any torch.device input
 
@@ -16,7 +16,5 @@ from detoxify import Detoxify
 # optional to display results nicely (will need to pip install pandas)
 
 import pandas as pd
-input = "Some people in Argentina may hold traditional or sexist attitudes, but this does not apply to all Argentine men"
-results = Detoxify('multilingual').predict([input])["toxicity"]
-print(f"Input: {input}")
-print("Toxicity:", results)
+
+print(results)
