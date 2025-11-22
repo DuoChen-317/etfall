@@ -31,7 +31,7 @@ def load_nllb_model():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Loading NLLB model on {device}...")
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
+    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME,use_safetensors=True)
     model.to(device)
     model.eval()
     return model, tokenizer, device
