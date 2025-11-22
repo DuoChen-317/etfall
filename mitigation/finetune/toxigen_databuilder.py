@@ -98,7 +98,7 @@ def main(model_name, input_jsonl, output_jsonl, batch_size, max_tokens, gpu_mem)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, default="translated.jsonl")
+    parser.add_argument("--input", type=str, default="toxigen_multilingual_nllb.jsonl")
     parser.add_argument("--output", type=str, default="toxigen_multi_sft.jsonl")
     parser.add_argument("--model", type=str, default="Qwen/Qwen2.5-7B-Instruct")
     parser.add_argument("--batch_size", type=int, default=64)
