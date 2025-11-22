@@ -6,7 +6,7 @@ model_name = "facebook/nllb-200-distilled-600M"
 
 # 2. Load the model and tokenizer
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name,use_safetensors=True)
 
 # 3. Define source and target languages using BCP-47 codes
 # For example, English (Latin script) to French (Latin script)
