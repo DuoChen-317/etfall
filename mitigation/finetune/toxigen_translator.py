@@ -57,7 +57,7 @@ def translate_nllb(model, tokenizer, device, text, tgt_lang_code, max_new_tokens
     with torch.no_grad():
         generated_tokens = model.generate(
             **encoded,
-            forced_bos_token_id=tokenizer.get_lang_id("fr"),
+            forced_bos_token_id=tokenizer.tokenizer.lang_code_to_id[tgt_lang_code],
             max_new_tokens=max_new_tokens,
             num_beams=4,
         )
