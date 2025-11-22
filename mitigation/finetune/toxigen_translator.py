@@ -3,7 +3,7 @@ import time
 from datasets import load_dataset
 from tqdm import tqdm
 import torch
-from transformers import NllbTokenizerFast, AutoModelForSeq2SeqLM
+from transformers import NllbTokenizer, AutoModelForSeq2SeqLM
 
 # -----------------------------
 # CONFIG
