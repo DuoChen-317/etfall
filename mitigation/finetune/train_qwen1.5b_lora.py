@@ -1,6 +1,6 @@
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from trl import SFTTrainer, SFTConfig
+from trl import SFTTrainer, SFTConfig,maybe_apply_chat_template
 from peft import LoraConfig
 
 MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
@@ -16,7 +16,7 @@ tokenizer.pad_token = tokenizer.eos_token
 # Load model
 model = AutoModelForCausalLM.from_pretrained(
     MODEL,
-    torch_dtype="auto",
+    dtype="auto",
     device_map="auto"
 )
 
@@ -30,10 +30,13 @@ peft_config = LoraConfig(
 )
 
 # Formatting function: converts messages → chat text
+# def format_messages(example):
+#     messages = example["messages"]
+#     text = tokenizer.apply_chat_template(messages, tokenize=False)
+#     return text
+
 def format_messages(example):
-    messages = example["messages"]
-    text = tokenizer.apply_chat_template(messages, tokenize=False)
-    return text
+    return maybe_apply_chat_template(example, tokenizer)
 
 # Training config
 training_args = SFTConfig(
@@ -55,9 +58,12 @@ trainer = SFTTrainer(
     model=model,
     args=training_args,
     train_dataset=dataset,
-    processing_class=tokenizer,    # <-- REQUIRED
-    peft_config=peft_config,       # <-- TRL 0.25 supports it
-    formatting_func=format_messages,  # <-- REQUIRED
+    processing_class=tokenizer,
+    peft_config=peft_config,
+    formatting_func=format_messages,
 )
 
 trainer.train()
+
+trainer.model.save_pretrained("./qwen_1_5b_sft_lora_final")
+tokenizer.save_pretrained("./qwen_1_5b_sft_lora_final")
