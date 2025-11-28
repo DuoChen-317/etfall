@@ -12,7 +12,7 @@ from emotion_eval.emotional_eval import bias_evaluation
 
 def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to this text emotionally:",MODE: str = "base"):
     # ==== CONFIG ====
-    DATASET = "facebook/xnli"
+    DATASET = "Tiyamo317/toxigen_multilinguish"
     DATASET_SUBSET = "all_languages"
     MODEL = "Tiyamo317/qwen2.5-1.5b-emotional"
     SUPPORTED_LANGUAGES = ["en", "fr", "ru", "es", "tr"]
@@ -32,8 +32,8 @@ def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to
         print(f"\n=== Processing language: {lang} ===")
         prompts = []
         for i in range(sample_number):
-            sample = ds[i]['premise'][lang]
-            prompt = f"(language:{lang}, Do not switch to other languages.) {prompt_template}\n{sample}"
+            sample_text = ds[i][lang]
+            prompt = f"(language:{lang}, Do not switch to other languages.) {prompt_template}\n{sample_text}"
             prompts.append(prompt)
 
         print("Generating responses...")
