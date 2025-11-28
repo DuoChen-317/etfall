@@ -46,9 +46,9 @@ def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to
             text_results.append({
                 "id": ds[i]["id"],
                 "lang": lang,
-                "input": ds[i]['premise'][lang],
+                "input": ds[i][lang],
                 "output": gen_text,
-                "toxicity": toxicity_score
+                "toxicity": toxicity_scores
             })
 
     # ==== BIAS EVALUATION ====
