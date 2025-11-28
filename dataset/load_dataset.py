@@ -11,5 +11,11 @@ def load_idassigned_dataset(dataset = "facebook/xnli", subset = "all_languages")
     lang = "ar"
     return ds
 
+def load_toxigen(dataset = "Tiyamo317/toxigen_multilinguish", split="train"):
+    # load_dataset
+    print("Loading dataset...")
+    ds = load_dataset(dataset,split=split)
+    print("Dataset loaded!!!")
+    return ds
 
-
+load_toxigen()

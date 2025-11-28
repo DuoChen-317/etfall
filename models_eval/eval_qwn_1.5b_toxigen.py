@@ -6,22 +6,21 @@ import argparse
 
 # Import project modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from dataset.load_xnli import load_idassigned_dataset
+from dataset.load_dataset import load_toxigen
 from emotion_eval.emotional_eval import bias_evaluation
 
 
 def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to this text emotionally:",MODE: str = "base"):
     # ==== CONFIG ====
     DATASET = "Tiyamo317/toxigen_multilinguish"
-    DATASET_SUBSET = "all_languages"
-    MODEL = "Tiyamo317/qwen2.5-1.5b-emotional"
+    MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
     SUPPORTED_LANGUAGES = ["en", "fr", "ru", "es", "tr"]
 
     text_results = []
     bias_results = []
 
     # ==== LOAD DATA ====
-    ds = load_idassigned_dataset(DATASET, DATASET_SUBSET)
+    ds = load_toxigen(DATASET)
 
     llm = LLM(model=MODEL, max_model_len=2048, gpu_memory_utilization=0.9)
     sampling = SamplingParams(temperature=0.7, top_p=0.9, max_tokens=256)

@@ -6,7 +6,7 @@ import argparse
 
 # Import project modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from dataset.load_xnli import load_idassigned_dataset
+from dataset.load_dataset import load_idassigned_dataset
 from emotion_eval.emotional_eval import bias_evaluation
 
 
