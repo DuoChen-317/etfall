@@ -32,7 +32,7 @@ LLAMA_SAFE_FILE_PATHs = ["../result/llama/safe/text_results_meta-llama_Llama-3.1
 QWEN_TOXIGEN_PATHS = ["../result/qwen/toxigen/text_results_Qwen_Qwen2.5-1.5B-Instruct_3000_toxigen.json",
             "../result/qwen/toxigen/text_results_Qwen_Qwen2.5-3B-Instruct_3000_toxigen.json",
             "../result/qwen/toxigen/text_results_Qwen_Qwen2.5-7B-Instruct_3000_toxigen.json",
-            "../result/qwen/toxigen/text_results_Tiyamo317_qwen2.5-1.5b-emotional_3000_toxigen.json"]
+            "../result/qwen/toxigen/text_results_Tiyamo317_qwen2.5-1.5b-safe-sft_3000_toxigen.json"]
 
 MODEL_NAMES_QWEN = ["Qwen2.5-1.5B", "Qwen2.5-3B", "Qwen2.5-7B"]
 MODEL_NAMES_LLAMA = ["Llama3.2-1B", "Llama3.2-3B", "Llama3.1-8B"]

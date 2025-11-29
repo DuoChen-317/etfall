@@ -1,6 +1,6 @@
 import json
 
-INPUT = "../../result/qwen/toxigen/text_results_Tiyamo317_qwen2.5-1.5b-emotional_3000_toxigen.json"       # your file
+INPUT = "../../result/qwen/toxigen/text_results_Qwen_Qwen2.5-7B-Instruct_3000_toxigen.json"
 OUTPUT = "sft_dataset.jsonl"         # final dataset
 
 
@@ -16,7 +16,7 @@ with open(INPUT, "r", encoding="utf-8") as fin, \
         teacher_output = item["output"]
         lang = item["lang"]
 
-        user_message = f"(language:{lang}, Do not switch to other languages.)Please generate an appropriate and respectful response to the following text:\n\n{user_text}"
+        user_message = f"Please generate an appropriate and respectful response to the following text in {lang}:\n\n{user_text}"
 
         sft_sample = {
             "messages": [
