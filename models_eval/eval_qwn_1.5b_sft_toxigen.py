@@ -13,7 +13,7 @@ from emotion_eval.emotional_eval import bias_evaluation
 def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to this text emotionally:",MODE: str = "base"):
     # ==== CONFIG ====
     DATASET = "Tiyamo317/toxigen_multilinguish"
-    MODEL = "Tiyamo317/qwen2.5-1.5b-emotional"
+    MODEL = "Tiyamo317/qwen2.5-1.5b-safe-sft"
     SUPPORTED_LANGUAGES = ["en", "fr", "ru", "es", "tr"]
 
     text_results = []
