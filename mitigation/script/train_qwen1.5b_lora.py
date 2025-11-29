@@ -4,7 +4,7 @@ from trl import SFTTrainer, SFTConfig,maybe_apply_chat_template
 from peft import LoraConfig
 
 MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
-DATA = "./sft_dataset.jsonl"
+DATA = "../dataset/sft_dataset.jsonl"
 
 # Load dataset
 dataset = load_dataset("json", data_files=DATA, split="train")
