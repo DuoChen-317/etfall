@@ -12,6 +12,9 @@ with open(INPUT, "r", encoding="utf-8") as fin, \
     data = json.load(fin)
 
     for item in data:
+        toxicity = item["toxicity"]
+        if toxicity > 0.05:
+            continue
         user_text = item["input"]
         teacher_output = item["output"]
         lang = item["lang"]
