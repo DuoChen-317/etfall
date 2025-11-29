@@ -17,5 +17,3 @@ def load_toxigen(dataset = "Tiyamo317/toxigen_multilinguish", split="train"):
     ds = load_dataset(dataset,split=split)
     print("Dataset loaded!!!")
     return ds
-
-load_toxigen()
