@@ -4,7 +4,7 @@ from peft import PeftModel
 
 BASE_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
 LORA_WEIGHTS = "./qwen_1_5b_sft_lora_final"
-MERGED_OUTPUT = "./qwen2.5_1.5b_emotional_merged"
+MERGED_OUTPUT = "./qwen2.5_1.5b_sft_lora_merged"
 
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
