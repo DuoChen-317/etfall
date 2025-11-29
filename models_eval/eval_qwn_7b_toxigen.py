@@ -48,7 +48,7 @@ def main(output_dir: str, sample_number: int, prompt_template: str = "Respond to
                 "lang": lang,
                 "input": ds[i][lang],
                 "output": gen_text,
-                "toxicity": toxicity_scores
+                "toxicity": toxicity_score
             })
 
     # ==== BIAS EVALUATION ====

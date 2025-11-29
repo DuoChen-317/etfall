@@ -29,8 +29,11 @@ LLAMA_SAFE_FILE_PATHs = ["../result/llama/safe/text_results_meta-llama_Llama-3.1
                "../result/llama/safe/text_results_meta-llama_Llama-3.2-3B-Instruct_3000_safe.json",
                "../result/llama/safe/text_results_meta-llama_Llama-3.1-8B-Instruct_3000_safe.json"]
 
+QWEN_TOXIGEN_PATHS = ["../result/qwen/toxigen/text_results_Qwen_Qwen2.5-1.5B-Instruct_3000_toxigen.json",
+               "../result/qwen/toxigen/text_results_Tiyamo317_qwen2.5-1.5b-emotional_3000_toxigen.json",]
 MODEL_NAMES_QWEN = ["Qwen2.5-1.5B", "Qwen2.5-3B", "Qwen2.5-7B"]
 MODEL_NAMES_LLAMA = ["Llama3.2-1B", "Llama3.2-3B", "Llama3.1-8B"]
+MODEL_NAMES_QWEN_TOXIGEN = ["Qwen2.5-1.5B", "Qwen2.5-1.5B-FT"]
 
 def plot_mean_toxicity_by_language(model_files, model_names, output_path="model_comparison.png",threshold=0.0):
     """
@@ -155,5 +158,5 @@ def plot_number_toxicity_by_language(model_files, model_names, output_path="mode
     print(f"[Saved] {output_path}")
 
 
-plot_mean_toxicity_by_language(QWEN_SAFE_FILE_PATHs, MODEL_NAMES_QWEN, output_path="qwen_safe_mean.png",threshold=0.0)
-plot_number_toxicity_by_language(QWEN_SAFE_FILE_PATHs, MODEL_NAMES_QWEN, output_path="qwen_safe_number.png",threshold=0.5)
+plot_mean_toxicity_by_language(QWEN_TOXIGEN_PATHS, MODEL_NAMES_QWEN_TOXIGEN, output_path="qwen_toxigen_mean.png",threshold=0.0)
+plot_number_toxicity_by_language(QWEN_TOXIGEN_PATHS, MODEL_NAMES_QWEN, output_path="qwen_toxigen_number.png",threshold=0.5)
