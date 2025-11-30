@@ -3,75 +3,84 @@ import time
 from datasets import load_dataset
 from openai import OpenAI
 from detoxify import Detoxify
-
 # --------------------------------------------
 # CONFIG
 # --------------------------------------------
 DATASET_NAME = "Tiyamo317/toxigen_multilinguish"
 DATASET_SPLIT = "train"
 
-OUTPUT_FILE = "sft_dataset_from_gpt.jsonl"
-MODEL_NAME = "gpt-4.1-mini"   # or gpt-5-nano
-
-MAX_SAMPLES = None
-SLEEP_TIME = 0.4               # avoid rate limits
+OUTPUT_FILE = "../dataset/sft_dataset_from_gpt.jsonl"
+MODEL_NAME = "gpt-4.1-mini"
+MAX_SAMPLES = None          # set to e.g. 200 for testing
+SLEEP_TIME = 0.5            # avoid rate limits
 
 client = OpenAI()
-detox = Detoxify("multilingual")
 
 BASE_INSTRUCTION = (
     "Please generate a safe, respectful, non-toxic response to the following text.\n"
-    "Avoid repeating slurs or harmful content. Respond in the same language.\n\n"
+    "Do not repeat harmful words.\n"
+    "Reply in the same language.\n\n"
 )
+# load detoxify
+dex = Detoxify("multilingual")
+LANG_KEYS = ["en", "es", "fr", "ru", "tr"]
+
 
 # --------------------------------------------
-# LOAD HF DATASET
+# LOAD DATASET
 # --------------------------------------------
 print(f"Loading dataset: {DATASET_NAME} ...")
-dataset = load_dataset(DATASET_NAME, DATASET_SPLIT)
-print(f"Loaded {len(dataset)} samples.")
+dataset = load_dataset(DATASET_NAME, split=DATASET_SPLIT)
+print(f"Loaded {len(dataset)} rows.")
 
 
 # --------------------------------------------
-# GENERATE SFT DATASET
+# GENERATE
 # --------------------------------------------
 with open(OUTPUT_FILE, "w", encoding="utf-8") as fout:
+
     for idx, item in enumerate(dataset):
 
         if MAX_SAMPLES and idx >= MAX_SAMPLES:
             break
 
-        lang = item["lang"]
-        input_text = item["premise"][lang]
+        # iterate through each language text
+        for lang in LANG_KEYS:
 
-        user_prompt = f"{BASE_INSTRUCTION}{input_text}"
+            input_text = item[lang]
 
-        # Call GPT
-        try:
-            response = client.responses.create(
-                model=MODEL_NAME,
-                input=user_prompt
-            )
-            assistant_output = response.output_text.strip()
+            if not input_text or len(input_text.strip()) == 0:
+                continue
 
-            toxicity = float(detox.predict(assistant_output)["toxicity"])
-        except Exception as e:
-            print(f"❌ Error at sample {idx}: {e}")
-            continue
+            user_prompt = f"{BASE_INSTRUCTION}{input_text}"
 
-        # Format SFT sample
-        sft_sample = {
-            "messages": [
-                {"role": "user", "content": user_prompt},
-                {"role": "assistant", "content": assistant_output}
-            ],
-            "meta": {
-                "lang": lang,
-                "toxicity": toxicity
+            try:
+                response = client.responses.create(
+                    model=MODEL_NAME,
+                    input=user_prompt
+                )
+                safe_output = response.output_text.strip()
+
+            except Exception as e:
+                print(f"Error at sample {idx}, lang {lang}: {e}")
+                continue
+
+            toxicity = dex.predict(safe_output)["toxicity"]
+            toxicity = float(toxicity)
+
+            sft_item = {
+                "messages": [
+                    {"role": "user", "content": user_prompt},
+                    {"role": "assistant", "content": safe_output}
+                ],
+                "meta": {
+                    "lang": lang,
+                    "source_id": item["id"],
+                    "toxicity_placeholder": toxicity
+                }
             }
-        }
 
-        fout.write(json.dumps(sft_sample, ensure_ascii=False) + "\n")
-        time.sleep(SLEEP_TIME)
+            fout.write(json.dumps(sft_item, ensure_ascii=False) + "\n")
+            time.sleep(SLEEP_TIME)
 
 print("✅ DONE — Saved SFT dataset to:", OUTPUT_FILE)
