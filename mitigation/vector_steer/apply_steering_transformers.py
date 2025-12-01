@@ -21,7 +21,7 @@ MAX_NEW_TOKENS = 128
 DEVICE = "cuda"
 LAYER = -1
 LANG = "en"
-SAMPLE_NUM = 500
+SAMPLE_NUM = 100
 
 # ================================================
 # LOAD DATASET (HuggingFace)
