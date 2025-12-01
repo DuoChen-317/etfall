@@ -21,7 +21,7 @@ ALPHA = 3
 MAX_NEW_TOKENS = 128
 DEVICE = "cuda"
 STEER_LAYER = 18    # IMPORTANT: steering layer
-LANG = "en"
+LANG = "ru"
 SAMPLE_NUM = 1000
 
 
@@ -35,7 +35,7 @@ ds = load_dataset(HF_DATASET, split="train")
 prompts = list(ds[LANG][:SAMPLE_NUM])
 ids = list(ds["id"][:SAMPLE_NUM])
 
-print(f"Loaded {len(prompts)} English toxic prompts.")
+print(f"Loaded {len(prompts)} {LANG} toxic prompts.")
 
 
 # ================================================
