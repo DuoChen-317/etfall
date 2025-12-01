@@ -21,6 +21,7 @@ MAX_NEW_TOKENS = 128
 DEVICE = "cuda"
 LAYER = -1
 LANG = "en"
+SAMPLE_NUM = 500
 
 # ================================================
 # LOAD DATASET (HuggingFace)
@@ -35,8 +36,8 @@ ids = ds["id"]
 # -------------------------
 # Run only first 500 samples
 # -------------------------
-prompts = prompts[:500]
-ids = ids[:500]
+prompts = prompts[:SAMPLE_NUM]
+ids = ids[:SAMPLE_NUM]
 
 print(f"Loaded {len(prompts)} English toxic prompts.")
 
