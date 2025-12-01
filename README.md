@@ -23,7 +23,7 @@ It evaluates LLM outputs’ **emotional tone and toxicity** using the [Detoxify]
 | **Goal** | Detect and analyze emotional bias in LLM-generated text accrossing different languages |
 | **Models** | Qwen2.5, LLaMA-3, or other open LLMs (via vLLM) |
 | **Evaluator** | Detoxify (for toxicity & emotion scoring) |
-| **Dataset** | [XNLI](https://huggingface.co/datasets/facebook/xnli) multilingual benchmark，[Toxigen]((https://huggingface.co/datasets/toxigen/toxigen-data))|
+| **Dataset** | [XNLI](https://huggingface.co/datasets/facebook/xnli) multilingual benchmark，[Toxigen](https://huggingface.co/datasets/toxigen/toxigen-data)|
 | **Frameworks** | `vLLM`, `datasets`|
 | **Environment** | Singularity container with GPU support |
 
