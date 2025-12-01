@@ -114,8 +114,8 @@ for idx, prompt in tqdm(list(zip(ids, prompts))):
         "prompt": prompt,
         "baseline": baseline,
         "steered": steered,
-        "toxicity_baseline": tox_base,
-        "toxicity_steered": tox_steer
+        "toxicity_baseline": float(tox_base),
+        "toxicity_steered": float(tox_steer)
     }
     results.append(record)
 
