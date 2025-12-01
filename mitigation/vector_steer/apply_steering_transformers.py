@@ -6,6 +6,8 @@ import torch
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+from mitigation.script.gpt_generaterawdata import LANG_KEYS
+
 # ================================================
 # CONFIG
 # ================================================
@@ -19,6 +21,7 @@ ALPHA = 3.0
 MAX_NEW_TOKENS = 128
 DEVICE = "cuda"
 LAYER = -1
+LANG = "en"
 
 # ================================================
 # LOAD DATASET (HuggingFace)
@@ -27,7 +30,7 @@ print("Loading dataset from HuggingFace...")
 ds = load_dataset(HF_DATASET, split="train")
 
 # English column is ds["en"]
-prompts = ds["en"]
+prompts = ds[LANG]
 ids = ds["id"]
 
 # -------------------------
@@ -104,7 +107,7 @@ def generate_with_steering(prompt, alpha=ALPHA):
 # ================================================
 # RUN EVALUATION LOOP
 # ================================================
-print("\nRunning evaluation on 3000 English toxic prompts...\n")
+print(f"\nRunning evaluation {len(prompts)} on {LANG} toxic prompts...\n")
 
 results = []
 
@@ -121,7 +124,8 @@ for idx, prompt in tqdm(list(zip(ids, prompts))):
         "baseline": baseline,
         "steered": steered,
         "toxicity_baseline": float(tox_base),
-        "toxicity_steered": float(tox_steer)
+        "toxicity_steered": float(tox_steer),
+        "Reduction": float(tox_base) - float(tox_steer)
     }
     results.append(record)
 
@@ -142,3 +146,16 @@ print(f"Mean steered toxicity:  {tox_steer.mean():.4f}")
 print(f"Reduction:              {(tox_base.mean() - tox_steer.mean()):.4f}")
 print(f"Improved samples:       {np.sum(tox_steer < tox_base)}/{len(results)}")
 print("\n=========================================\n")
+
+
+# sort by reduction (descending)
+sorted_results = sorted(results, key=lambda x: x["Reduction"], reverse=True)
+
+print("=== Top 10 Most Improved ===")
+for r in sorted_results[:5]:
+    print("\n--- Prompt ---")
+    print(r["prompt"])
+    print("\nBaseline:", r["baseline"], f"({r['toxicity_baseline']:.3f})")
+    print("Steered :", r["steered"], f"({r['toxicity_steered']:.3f})")
+    print("Reduction:", r["Reduction"])
+    print("-------------------------------------")
