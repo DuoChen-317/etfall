@@ -88,7 +88,7 @@ def generate_baseline(prompt):
 
 def generate_with_steering(prompt, alpha=ALPHA):
     # attach hook BEFORE generation
-    hook = model.model.transformer.layers[STEER_LAYER].register_forward_hook(
+    hook = model.model.layers[STEER_LAYER].register_forward_hook(
         make_steering_hook(steering_vec, alpha)
     )
 
