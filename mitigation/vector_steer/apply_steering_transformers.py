@@ -30,6 +30,12 @@ ds = load_dataset(HF_DATASET, split="train")
 prompts = ds["en"]
 ids = ds["id"]
 
+# -------------------------
+# Run only first 500 samples
+# -------------------------
+prompts = prompts[:500]
+ids = ids[:500]
+
 print(f"Loaded {len(prompts)} English toxic prompts.")
 
 
