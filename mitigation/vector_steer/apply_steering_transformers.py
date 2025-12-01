@@ -16,12 +16,12 @@ VECTOR_FILE = "safety_vector.npy"
 
 OUTPUT_FILE = "steering_eval_results_en.jsonl"
 
-ALPHA = 1
+ALPHA = 3
 MAX_NEW_TOKENS = 128
 DEVICE = "cuda"
 STEER_LAYER = 18    # IMPORTANT: steering layer
 LANG = "en"
-SAMPLE_NUM = 500
+SAMPLE_NUM = 1000
 
 
 
