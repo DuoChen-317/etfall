@@ -33,9 +33,6 @@ ds = load_dataset(HF_DATASET, split="train")
 prompts = ds[LANG]
 ids = ds["id"]
 
-# -------------------------
-# Run only first 500 samples
-# -------------------------
 prompts = prompts[:SAMPLE_NUM]
 ids = ids[:SAMPLE_NUM]
 
