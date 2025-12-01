@@ -14,7 +14,7 @@ OUTPUT_VECTOR = "safety_vector.npy"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 LAYER = -1    # use last hidden layer
 EMB_POOLING = "mean"   # mean pooling
-LANG = "en"
+LANG = "ru"
 
 
 # ----------------------------
