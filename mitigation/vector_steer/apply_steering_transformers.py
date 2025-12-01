@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 # ================================================
 MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"
 HF_DATASET = "Tiyamo317/toxigen_multilinguish"
-VECTOR_FILE = "safety_vector_en.npy"
+VECTOR_FILE = "safety_vector.npy"
 
 OUTPUT_FILE = "steering_eval_results_en.jsonl"
 
