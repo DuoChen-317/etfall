@@ -6,7 +6,6 @@ import torch
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-from mitigation.script.gpt_generaterawdata import LANG_KEYS
 
 # ================================================
 # CONFIG
