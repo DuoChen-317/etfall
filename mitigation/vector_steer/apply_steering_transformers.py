@@ -7,6 +7,7 @@ from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 
+
 # ================================================
 # CONFIG
 # ================================================
@@ -121,6 +122,10 @@ for idx, prompt in tqdm(list(zip(ids, prompts))):
 
     baseline = generate_baseline(full_prompt)
     steered  = generate_with_steering(full_prompt)
+
+    # remove the input text
+    baseline = baseline.replace(full_prompt, "")
+    steered = steered.replace(full_prompt, "")
 
     tox_base  = float(get_tox(baseline))
     tox_steer = float(get_tox(steered))
