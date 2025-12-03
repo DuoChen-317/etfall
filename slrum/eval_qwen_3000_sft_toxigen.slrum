@@ -35,7 +35,7 @@ echo "[$(date)] Starting Qwen 1.5B evaluation..."
 singularity exec --nv $SIF_IMAGE python3 models_eval/eval_qwn_1.5b_toxigen.py --sample_number $SAMPLE_NUM --prompt_template "$PROMPT_TEMPLATE" --mode "toxigen" --output_dir $OUTPUT_DIR
 
 echo "[$(date)] Starting Qwen 3B evaluation..."
-singularity exec --nv $SIF_IMAGE python3 models_eval/eval_qwn_3Bb_toxigen.py --sample_number $SAMPLE_NUM --prompt_template "$PROMPT_TEMPLATE" --mode "toxigen" --output_dir $OUTPUT_DIR
+singularity exec --nv $SIF_IMAGE python3 models_eval/eval_qwn_3b_toxigen.py --sample_number $SAMPLE_NUM --prompt_template "$PROMPT_TEMPLATE" --mode "toxigen" --output_dir $OUTPUT_DIR
 
 echo "[$(date)] Starting Qwen 7B evaluation..."
 singularity exec --nv $SIF_IMAGE python3 models_eval/eval_qwn_7b_toxigen.py --sample_number $SAMPLE_NUM --prompt_template "$PROMPT_TEMPLATE" --mode "toxigen" --output_dir $OUTPUT_DIR
