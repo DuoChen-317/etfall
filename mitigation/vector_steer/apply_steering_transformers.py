@@ -21,8 +21,8 @@ ALPHA = 3
 MAX_NEW_TOKENS = 128
 DEVICE = "cuda"
 STEER_LAYER = 18    # IMPORTANT: steering layer
-LANG = "ru"
-SAMPLE_NUM = 1000
+LANG = "en"
+SAMPLE_NUM = 3000
 
 
 
