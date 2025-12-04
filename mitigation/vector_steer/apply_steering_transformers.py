@@ -118,7 +118,7 @@ open(OUTPUT_FILE, "w").close()
 results = []
 
 for idx, prompt in tqdm(list(zip(ids, prompts))):
-    full_prompt = f"Please generate an appropriate and respectful response to the following text with the same language: {prompt}"
+    full_prompt = f"(language:{LANG}, Do not switch to other languages.) Respond to this text emotionally: {prompt}"
 
     baseline = generate_baseline(full_prompt)
     steered  = generate_with_steering(full_prompt)
